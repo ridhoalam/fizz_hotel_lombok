@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Manrope:wght@400;500;600;700&amp;display=swap">
+<link rel="stylesheet" href="_ds/modernist-9ac7238c-ca88-4394-80fd-660058324a4b/styles.css">
+<script src="_ds/modernist-9ac7238c-ca88-4394-80fd-660058324a4b/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<meta name="description" content="Fizz Hotel Lombok is a modern city hotel on Jl. Majapahit, Mataram. Comfortable rooms, restaurant, meeting room, free Wi-Fi and parking.">
+<meta property="og:title" content="Fizz Hotel Lombok – City Hotel in Mataram">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.fizzhotellombok.com/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":["Hotel","LocalBusiness"],"name":"Fizz Hotel Lombok","address":{"@type":"PostalAddress","streetAddress":"Jl. Majapahit No. 31, Kekalik Jaya, Sekarbela","addressLocality":"Mataram","addressRegion":"Nusa Tenggara Barat","addressCountry":"ID"},"telephone":"+62 370 7506999","email":"fizzhotellombok@gmail.com","numberOfRooms":43,"amenityFeature":[{"@type":"LocationFeatureSpecification","name":"Free Wi-Fi","value":true},{"@type":"LocationFeatureSpecification","name":"Free parking","value":true},{"@type":"LocationFeatureSpecification","name":"Restaurant","value":true}]}</script>
+<style>
+:root{--color-accent:#3A8455;--color-bg:#FFFFFF;--color-text:#252B27;--radius-md:4px}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:#252B27;font-family:'Manrope',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#3A8455;text-decoration:none}
+a:hover{color:#2A6642}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#3A8455 !important;box-shadow:0 0 0 3px #E4F2E7}
+:focus-visible{outline:2px solid #3A8455;outline-offset:2px}
+::selection{background:#E4F2E7}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;background:#fff">
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:50;height:76px;background:{{ hdr.bg }};border-bottom:1px solid {{ hdr.border }};color:{{ hdr.fg }};transition:background .3s, color .3s, border-color .3s">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <a href="#/" aria-label="Fizz Hotel Lombok home" style="display:flex;align-items:center;flex:none">
+      <img src="{{ hdr.logo }}" alt="Fizz Hotel Lombok" width="187" height="48" style="display:block;height:48px;width:auto">
+    </a>
+    <sc-if value="{{ desktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Main" style="display:flex;align-items:center;gap:clamp(14px,1.8vw,28px)">
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="8">
+          <a href="{{ n.href }}" style="font-size:13px;font-weight:600;letter-spacing:.02em;color:inherit;opacity:{{ n.opacity }};padding:6px 0;border-bottom:1px solid {{ n.line }};transition:opacity .2s" style-hover="opacity:1">{{ n.label }}</a>
+        </sc-for>
+      </nav>
+    </sc-if>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a href="#/booking" style="display:inline-flex;align-items:center;padding:11px 20px;background:#3A8455;color:#fff;border-radius:4px;font-size:13px;font-weight:700;letter-spacing:.02em;transition:background .2s" style-hover="background:#2A6642;color:#fff">Book Now</a>
+      <sc-if value="{{ mobile }}" hint-placeholder-val="{{ false }}">
+        <button aria-label="Open menu" onClick="{{ toggleMenu }}" style="width:44px;height:44px;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 11px;background:transparent;border:1px solid {{ hdr.border2 }};border-radius:4px;cursor:pointer;color:inherit">
+          <span style="display:block;height:1.5px;background:currentColor"></span>
+          <span style="display:block;height:1.5px;background:currentColor"></span>
+          <span style="display:block;height:1.5px;background:currentColor"></span>
+        </button>
+      </sc-if>
+    </div>
+  </div>
+</header>
+
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:76px 0 0 0;z-index:49;background:#fff;padding:24px clamp(20px,4vw,48px);display:flex;flex-direction:column;overflow:auto">
+    <sc-for list="{{ nav }}" as="n" hint-placeholder-count="8">
+      <a href="{{ n.href }}" onClick="{{ closeMenu }}" style="font-family:'Playfair Display',Georgia,serif;font-size:28px;color:#252B27;padding:14px 0;border-bottom:1px solid #E6EAE6">{{ n.label }}</a>
+    </sc-for>
+    <a href="#/booking" onClick="{{ closeMenu }}" style="margin-top:28px;padding:16px 22px;background:#3A8455;color:#fff;border-radius:4px;font-weight:700">Book Your Stay</a>
+  </div>
+</sc-if>
+
+<main style="flex:1">
+
+<!-- HOME -->
+<sc-if value="{{ is.home }}" hint-placeholder-val="{{ true }}">
+  <section data-screen-label="Home" aria-label="Welcome" style="position:relative;min-height:max(640px,94vh);display:flex;align-items:flex-end;color:#fff;background:#2A6642">
+    <div style="position:absolute;inset:0"><image-slot id="home-hero" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/20/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rect" placeholder="Hero photograph — hotel exterior or lobby"></image-slot></div>
+    <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(18,32,24,.5) 0%,rgba(18,32,24,.2) 25%,rgba(18,32,24,.72) 60%,rgba(18,32,24,.85) 100%),linear-gradient(90deg,rgba(18,32,24,.45) 0%,rgba(18,32,24,0) 65%)"></div>
+    <div style="position:relative;width:100%;max-width:1280px;margin:0 auto;padding:140px clamp(20px,4vw,48px) clamp(40px,6vw,72px);box-sizing:border-box;pointer-events:none">
+      <p style="margin:0 0 20px;font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase">City Hotel · Mataram, Lombok</p>
+      <h1 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(44px,7vw,96px);line-height:1.02;letter-spacing:-.015em;max-width:12ch">Your Comfort, Our Priority.</h1>
+      <p style="margin:24px 0 0;max-width:520px;font-size:clamp(16px,1.4vw,18px);line-height:1.65">A modern city hotel on Jl. Majapahit in Mataram, with 43 rooms, an in-house restaurant and an easy base for business and leisure in Lombok.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;pointer-events:auto">
+        <a href="#/rooms" style="padding:16px 28px;background:#fff;color:#2A6642;border-radius:4px;font-size:14px;font-weight:700;transition:background .2s" style-hover="background:#E4F2E7;color:#2A6642">Explore Our Rooms</a>
+        <a href="#/booking" style="padding:15px 27px;border:1px solid rgba(255,255,255,.8);color:#fff;border-radius:4px;font-size:14px;font-weight:700;transition:background .2s" style-hover="background:rgba(255,255,255,.12);color:#fff">Book Your Stay</a>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showWidget }}" hint-placeholder-val="{{ true }}">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);position:relative;z-index:2">
+      <form onSubmit="{{ widgetSubmit }}" aria-label="Check availability" style="margin-top:-44px;background:#fff;border-radius:6px;box-shadow:0 18px 50px rgba(42,102,66,.14);display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;overflow:hidden;border:1px solid #E6EAE6">
+        <label style="display:flex;flex-direction:column;gap:6px;padding:18px 22px;background:#fff">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3A8455">Check-in</span>
+          <input type="date" value="{{ f.ci }}" onChange="{{ on.ci }}" style="border:0;padding:0;font:inherit;font-size:15px;color:#252B27;background:transparent">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;padding:18px 22px;background:#fff;border-left:1px solid #E6EAE6">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3A8455">Check-out</span>
+          <input type="date" value="{{ f.co }}" onChange="{{ on.co }}" style="border:0;padding:0;font:inherit;font-size:15px;color:#252B27;background:transparent">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;padding:18px 22px;background:#fff;border-left:1px solid #E6EAE6">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3A8455">Guests</span>
+          <select value="{{ f.adults }}" onChange="{{ on.adults }}" style="border:0;padding:0;font:inherit;font-size:15px;color:#252B27;background:transparent">
+            <option value="1">1 adult</option><option value="2">2 adults</option><option value="3">3 adults</option><option value="4">4 adults</option><option value="6">6 adults</option>
+          </select>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;padding:18px 22px;background:#fff;border-left:1px solid #E6EAE6">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3A8455">Rooms</span>
+          <select value="{{ f.rooms }}" onChange="{{ on.rooms }}" style="border:0;padding:0;font:inherit;font-size:15px;color:#252B27;background:transparent">
+            <option value="1">1 room</option><option value="2">2 rooms</option><option value="3">3 rooms</option><option value="4">4+ rooms</option>
+          </select>
+        </label>
+        <button type="submit" style="border:0;background:#3A8455;color:#fff;font:inherit;font-size:14px;font-weight:700;padding:22px;cursor:pointer;text-align:left;transition:background .2s" style-hover="background:#2A6642">Check availability →</button>
+      </form>
+    </div>
+  </sc-if>
+
+  <section aria-labelledby="intro-h" style="padding:clamp(72px,10vw,128px) 0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,96px);align-items:center">
+      <div>
+        <p style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">Welcome to Fizz</p>
+        <h2 id="intro-h" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(32px,4vw,52px);line-height:1.12;text-wrap:balance">A contemporary stay in the centre of Mataram.</h2>
+        <p style="margin:24px 0 0;font-size:17px;line-height:1.75;color:#4a524c;text-wrap:pretty">Fizz Hotel Lombok sits on Jl. Majapahit in Mataram's business district, a short drive from the city's main shopping, museums and government offices. The hotel pairs practical, well-kept rooms with an artistic interior: murals and art installations run through the corridors, and each room carries its own mural.</p>
+        <dl style="margin:40px 0 0;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #E6EAE6">
+          <div style="padding:20px 0 0"><dt style="font-size:12px;color:#4a524c">Rooms</dt><dd style="margin:6px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:32px">43</dd></div>
+          <div style="padding:20px 0 0 20px;border-left:1px solid #E6EAE6"><dt style="font-size:12px;color:#4a524c">Floors</dt><dd style="margin:6px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:32px">4</dd></div>
+          <div style="padding:20px 0 0 20px;border-left:1px solid #E6EAE6"><dt style="font-size:12px;color:#4a524c">Renovated</dt><dd style="margin:6px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:32px">2018</dd></div>
+        </dl>
+        <a href="#/about" style="display:inline-block;margin-top:36px;font-size:14px;font-weight:700;border-bottom:1px solid #3A8455;padding-bottom:4px">About the hotel →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:end">
+        <div style="aspect-ratio:3/4"><image-slot id="home-intro-1" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/1f/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Lobby or reception"></image-slot></div>
+        <div style="aspect-ratio:3/4.4"><image-slot id="home-intro-2" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/21/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Hotel exterior on Jl. Majapahit"></image-slot></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="rooms-h" style="padding:clamp(72px,10vw,128px) 0;background:#F7F9F7">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px">
+        <div>
+          <p style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">Rooms</p>
+          <h2 id="rooms-h" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(32px,4vw,52px);line-height:1.12">Three ways to stay.</h2>
+        </div>
+        <a href="#/rooms" style="font-size:14px;font-weight:700;border-bottom:1px solid #3A8455;padding-bottom:4px">All rooms →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px">
+        <sc-for list="{{ rooms }}" as="r" hint-placeholder-count="3">
+          <article style="background:#fff;border-radius:6px;overflow:hidden;border:1px solid #E6EAE6;display:flex;flex-direction:column;transition:box-shadow .3s" style-hover="box-shadow:0 18px 40px rgba(42,102,66,.10)">
+            <div style="aspect-ratio:4/3"><image-slot id="{{ r.img1 }}" src="{{ r.img1Src }}" shape="rect" placeholder="{{ r.name }} photo"></image-slot></div>
+            <div style="padding:28px;display:flex;flex-direction:column;gap:14px;flex:1">
+              <h3 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:28px">{{ r.name }}</h3>
+              <p style="margin:0;font-size:15px;line-height:1.65;color:#4a524c">{{ r.short }}</p>
+              <ul style="list-style:none;margin:0;padding:14px 0 0;display:flex;flex-wrap:wrap;gap:8px 18px;border-top:1px solid #E6EAE6;font-size:13px;color:#252B27">
+                <li>{{ r.size }}</li><li>{{ r.bed }}</li><li>{{ r.occ }}</li>
+              </ul>
+              <div style="display:flex;gap:10px;margin-top:auto;padding-top:10px">
+                <a href="{{ r.href }}" style="flex:1;padding:13px 16px;border:1px solid #3A8455;border-radius:4px;font-size:13px;font-weight:700;transition:background .2s" style-hover="background:#E4F2E7">View Details</a>
+                <a href="{{ r.bookHref }}" style="flex:1;padding:13px 16px;background:#3A8455;color:#fff;border-radius:4px;font-size:13px;font-weight:700;transition:background .2s" style-hover="background:#2A6642;color:#fff">Book Now</a>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="exp-h" style="padding:clamp(72px,10vw,128px) 0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px">
+      <div style="grid-column:span {{ span.a }};padding-right:clamp(0px,3vw,40px);align-self:center">
+        <p style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">The Fizz Experience</p>
+        <h2 id="exp-h" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(32px,4vw,52px);line-height:1.12;text-wrap:balance">Art on every wall, <em style="font-style:italic">a mural in every room.</em></h2>
+        <p style="margin:24px 0 0;font-size:17px;line-height:1.75;color:#4a524c;text-wrap:pretty">Fizz is a city hotel with a creative streak. Murals and art installations give the corridors and public spaces their character, and no two rooms share the same artwork, so every stay feels a little different.</p>
+      </div>
+      <div style="grid-column:span {{ span.b }};aspect-ratio:4/5"><image-slot id="home-exp-1" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/1e/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Room mural detail"></image-slot></div>
+      <div style="grid-column:span {{ span.c }};display:grid;gap:16px">
+        <div style="aspect-ratio:1/1"><image-slot id="home-exp-2" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/23/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Corridor art installation"></image-slot></div>
+        <div style="aspect-ratio:1/1.1"><image-slot id="home-exp-3" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/1c/d6/71/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Lounge atmosphere"></image-slot></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="fac-h" style="padding:clamp(72px,10vw,128px) 0;background:#F7F9F7">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px">
+        <div>
+          <p style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">Facilities &amp; Services</p>
+          <h2 id="fac-h" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(32px,4vw,52px);line-height:1.12">Everything close at hand.</h2>
+        </div>
+        <a href="#/facilities" style="font-size:14px;font-weight:700;border-bottom:1px solid #3A8455;padding-bottom:4px">All facilities →</a>
+      </div>
+      <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));border-top:2px solid #3A8455">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="8">
+          <li style="padding:26px 24px 30px 0;border-bottom:1px solid #E6EAE6;display:flex;flex-direction:column;gap:8px">
+            <span style="font-size:12px;font-weight:700;color:#3A8455;letter-spacing:.08em">{{ s.no }}</span>
+            <span style="font-family:'Playfair Display',Georgia,serif;font-size:22px">{{ s.name }}</span>
+            <span style="font-size:14px;line-height:1.6;color:#4a524c">{{ s.desc }}</span>
+          </li>
+        </sc-for>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="rest-h" style="background:#2A6642;color:#fff">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))">
+      <div style="min-height:460px;position:relative"><div style="position:absolute;inset:0"><image-slot id="home-rest" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/56/06/be/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rect" placeholder="Restaurant or breakfast photograph"></image-slot></div></div>
+      <div style="padding:clamp(48px,7vw,96px) clamp(20px,5vw,72px);display:flex;flex-direction:column;justify-content:center">
+        <p style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#E4F2E7">Restaurant</p>
+        <h2 id="rest-h" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(32px,4vw,52px);line-height:1.12;text-wrap:balance">Start the day with a local breakfast.</h2>
+        <p style="margin:24px 0 0;font-size:17px;line-height:1.75;color:#E4F2E7;max-width:480px">Our in-house restaurant serves a daily breakfast of local cuisine for hotel guests, with dine-in, takeaway and room service available through the day.</p>
+        <a href="#/restaurant" style="align-self:flex-start;margin-top:36px;padding:16px 28px;background:#fff;color:#2A6642;border-radius:4px;font-size:14px;font-weight:700;transition:background .2s" style-hover="background:#E4F2E7;color:#2A6642">Explore Restaurant</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="why-h" style="padding:clamp(72px,10vw,128px) 0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <p style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">Why Fizz</p>
+      <h2 id="why-h" style="margin:0 0 48px;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(32px,4vw,52px);line-height:1.12;max-width:16ch">Made for the way people travel through Mataram.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:0;border-top:2px solid #3A8455">
+        <sc-for list="{{ why }}" as="w" hint-placeholder-count="5">
+          <div style="padding:28px 24px 0 0;display:flex;flex-direction:column;gap:12px">
+            <h3 style="margin:0;font-size:17px;font-weight:700">{{ w.t }}</h3>
+            <p style="margin:0;font-size:15px;line-height:1.65;color:#4a524c">{{ w.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="loc-h" style="padding:0 0 clamp(72px,10vw,128px)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,64px)">
+      <div style="min-height:420px;border-radius:6px;overflow:hidden;border:1px solid #E6EAE6;background:#E4F2E7">
+        <iframe title="Map: Fizz Hotel Lombok" src="{{ mapSrc }}" loading="lazy" style="border:0;width:100%;height:100%;min-height:420px;display:block"></iframe>
+      </div>
+      <div style="display:flex;flex-direction:column;justify-content:center">
+        <p style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">Location</p>
+        <h2 id="loc-h" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(32px,4vw,52px);line-height:1.12">In the heart of the city.</h2>
+        <address style="margin:24px 0 0;font-style:normal;font-size:17px;line-height:1.7">Jl. Majapahit No. 31, Kekalik Jaya,<br>Sekarbela, Mataram, Lombok</address>
+        <ul style="list-style:none;margin:28px 0 0;padding:0;border-top:1px solid #E6EAE6">
+          <sc-for list="{{ nearbyShort }}" as="p" hint-placeholder-count="3">
+            <li style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid #E6EAE6;font-size:15px"><span>{{ p.name }}</span><span style="color:#4a524c;text-align:right">{{ p.dist }}</span></li>
+          </sc-for>
+        </ul>
+        <div style="display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:28px;font-size:15px">
+          <a href="tel:+623707506999">+62 370 7506999</a>
+          <a href="mailto:fizzhotellombok@gmail.com">fizzhotellombok@gmail.com</a>
+        </div>
+        <a href="#/location" style="align-self:flex-start;margin-top:28px;font-size:14px;font-weight:700;border-bottom:1px solid #3A8455;padding-bottom:4px">Directions &amp; nearby →</a>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="rev-h" style="padding:clamp(72px,10vw,128px) 0;background:#E4F2E7">
+    <div style="max-width:960px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <p style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">Guest Reviews</p>
+      <h2 id="rev-h" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Guest testimonials</h2>
+      <figure style="margin:0;min-height:220px">
+        <blockquote style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,3vw,38px);line-height:1.35;color:#2A6642;text-wrap:pretty">“{{ review.quote }}”</blockquote>
+        <figcaption style="margin-top:28px;font-size:14px;color:#252B27"><strong>{{ review.name }}</strong> · {{ review.source }}</figcaption>
+      </figure>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:40px;padding-top:24px;border-top:1px solid rgba(42,102,66,.25)">
+        <span style="font-size:13px;font-weight:600;color:#2A6642">{{ reviewPos }}</span>
+        <div style="display:flex;gap:8px">
+          <button aria-label="Previous review" onClick="{{ prevReview }}" style="width:48px;height:48px;border:1px solid #3A8455;background:transparent;border-radius:4px;color:#3A8455;font-size:18px;cursor:pointer" style-hover="background:#fff">←</button>
+          <button aria-label="Next review" onClick="{{ nextReview }}" style="width:48px;height:48px;border:0;background:#3A8455;border-radius:4px;color:#fff;font-size:18px;cursor:pointer" style-hover="background:#2A6642">→</button>
+        </div>
+      </div>
+      <p style="margin:20px 0 0;font-size:12px;color:#2A6642">Placeholder entries — replace with verified guest reviews or connect a Google Reviews feed.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="cta-h" style="padding:clamp(72px,10vw,128px) 0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px">
+      <h2 id="cta-h" style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(36px,5vw,68px);line-height:1.06;max-width:14ch">Make Your Stay in Lombok Memorable.</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a href="#/booking" style="padding:17px 30px;background:#3A8455;color:#fff;border-radius:4px;font-size:14px;font-weight:700;transition:background .2s" style-hover="background:#2A6642;color:#fff">Book Your Stay</a>
+        <a href="#/contact" style="padding:16px 29px;border:1px solid #3A8455;border-radius:4px;font-size:14px;font-weight:700;transition:background .2s" style-hover="background:#E4F2E7">Contact Hotel</a>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- INNER PAGE HEADER -->
+<sc-if value="{{ inner }}" hint-placeholder-val="{{ false }}">
+  <section style="background:#F7F9F7;padding:clamp(120px,14vw,168px) 0 clamp(48px,6vw,72px);border-bottom:1px solid #E6EAE6">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <nav aria-label="Breadcrumb">
+        <ol style="list-style:none;margin:0 0 28px;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:#4a524c">
+          <sc-for list="{{ crumbs }}" as="c" hint-placeholder-count="2">
+            <li style="display:flex;gap:8px"><a href="{{ c.href }}" style="color:#4a524c" style-hover="color:#3A8455">{{ c.label }}</a><span aria-hidden="true">/</span></li>
+          </sc-for>
+          <li aria-current="page" style="color:#252B27;font-weight:600">{{ ph.crumb }}</li>
+        </ol>
+      </nav>
+      <p style="margin:0 0 16px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">{{ ph.eyebrow }}</p>
+      <h1 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(40px,6vw,76px);line-height:1.05;letter-spacing:-.01em;max-width:18ch;text-wrap:balance">{{ ph.title }}</h1>
+      <p style="margin:22px 0 0;max-width:620px;font-size:18px;line-height:1.7;color:#4a524c;text-wrap:pretty">{{ ph.lead }}</p>
+    </div>
+  </section>
+</sc-if>
+
+<!-- ABOUT -->
+<sc-if value="{{ is.about }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="About" style="padding:clamp(72px,10vw,120px) 0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,96px);align-items:center">
+      <div style="aspect-ratio:5/4"><image-slot id="about-intro" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/b4/54/7b/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Hotel exterior"></image-slot></div>
+      <div>
+        <h2 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.15">A city hotel with its own character.</h2>
+        <p style="margin:22px 0 0;font-size:17px;line-height:1.75;color:#4a524c">Fizz Hotel Lombok opened in 2015 and was renovated in 2018. Across four floors, its 43 air-conditioned rooms are designed for travellers who want a comfortable, well-located base in Mataram without fuss.</p>
+        <p style="margin:16px 0 0;font-size:17px;line-height:1.75;color:#4a524c">What sets the hotel apart is its art. Murals and installations appear throughout the building, and every guest room has a mural of its own.</p>
+      </div>
+    </div>
+  </section>
+  <section style="padding:0 0 clamp(72px,10vw,120px)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));border-top:2px solid #3A8455">
+      <sc-for list="{{ values }}" as="v" hint-placeholder-count="3">
+        <div style="padding:32px 32px 0 0">
+          <p style="margin:0 0 12px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">{{ v.k }}</p>
+          <h3 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:26px;line-height:1.25">{{ v.t }}</h3>
+          <p style="margin:14px 0 0;font-size:16px;line-height:1.7;color:#4a524c">{{ v.d }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+  <section style="padding:clamp(72px,10vw,120px) 0;background:#F7F9F7">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:36px">
+        <h2 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,46px)">Inside Fizz</h2>
+        <a href="#/gallery" style="font-size:14px;font-weight:700;border-bottom:1px solid #3A8455;padding-bottom:4px">Full gallery →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px">
+        <div style="aspect-ratio:3/4"><image-slot id="about-g1" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/20/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Lobby"></image-slot></div>
+        <div style="aspect-ratio:3/4"><image-slot id="about-g2" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/1f/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Mural"></image-slot></div>
+        <div style="aspect-ratio:3/4"><image-slot id="about-g3" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/21/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Guest room"></image-slot></div>
+        <div style="aspect-ratio:3/4"><image-slot id="about-g4" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/1e/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Restaurant"></image-slot></div>
+      </div>
+    </div>
+  </section>
+  <section style="padding:clamp(72px,10vw,120px) 0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,64px);align-items:center">
+      <div>
+        <p style="margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#3A8455">Location overview</p>
+        <h2 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.15">On Jl. Majapahit, in Mataram's business district.</h2>
+        <p style="margin:22px 0 0;font-size:17px;line-height:1.75;color:#4a524c">The hotel is a convenient base for meetings in the city and for day trips across Lombok, with shopping, museums and dining close by.</p>
+        <a href="#/location" style="display:inline-block;margin-top:28px;padding:15px 26px;background:#3A8455;color:#fff;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#2A6642;color:#fff">View location</a>
+      </div>
+      <div style="min-height:360px;border-radius:6px;overflow:hidden;border:1px solid #E6EAE6"><iframe title="Map: Fizz Hotel Lombok" src="{{ mapSrc }}" loading="lazy" style="border:0;width:100%;height:100%;min-height:360px;display:block"></iframe></div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- ROOMS -->
+<sc-if value="{{ is.rooms }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Rooms" style="padding:clamp(48px,6vw,72px) 0 clamp(72px,10vw,120px)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <div role="group" aria-label="Filter rooms" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:48px">
+        <sc-for list="{{ filters }}" as="fl" hint-placeholder-count="3">
+          <button onClick="{{ fl.onClick }}" aria-pressed="{{ fl.active }}" style="padding:11px 18px;border-radius:4px;border:1px solid {{ fl.border }};background:{{ fl.bg }};color:{{ fl.fg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ fl.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:clamp(48px,6vw,80px)">
+        <sc-for list="{{ roomsFiltered }}" as="r" hint-placeholder-count="3">
+          <article style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(28px,4vw,64px);padding-top:clamp(32px,4vw,48px);border-top:1px solid #E6EAE6">
+            <div style="aspect-ratio:4/3"><image-slot id="{{ r.img1 }}" src="{{ r.img1Src }}" shape="rounded" radius="6" placeholder="{{ r.name }} photo"></image-slot></div>
+            <div style="display:flex;flex-direction:column">
+              <h2 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(30px,3.4vw,44px)">{{ r.name }}</h2>
+              <p style="margin:16px 0 0;font-size:16px;line-height:1.7;color:#4a524c">{{ r.desc }}</p>
+              <dl style="margin:28px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid #E6EAE6">
+                <div style="padding:14px 0;border-bottom:1px solid #E6EAE6"><dt style="font-size:12px;color:#4a524c">Room size</dt><dd style="margin:4px 0 0;font-weight:600">{{ r.size }}</dd></div>
+                <div style="padding:14px 0 14px 16px;border-bottom:1px solid #E6EAE6"><dt style="font-size:12px;color:#4a524c">Bed</dt><dd style="margin:4px 0 0;font-weight:600">{{ r.bed }}</dd></div>
+                <div style="padding:14px 0;border-bottom:1px solid #E6EAE6"><dt style="font-size:12px;color:#4a524c">Occupancy</dt><dd style="margin:4px 0 0;font-weight:600">{{ r.occ }}</dd></div>
+                <div style="padding:14px 0 14px 16px;border-bottom:1px solid #E6EAE6"><dt style="font-size:12px;color:#4a524c">View</dt><dd style="margin:4px 0 0;font-weight:600">{{ r.view }}</dd></div>
+              </dl>
+              <ul style="list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px">
+                <sc-for list="{{ r.amenitiesShort }}" as="a" hint-placeholder-count="5">
+                  <li style="padding:7px 12px;background:#E4F2E7;color:#2A6642;border-radius:3px;font-size:12px;font-weight:600">{{ a }}</li>
+                </sc-for>
+              </ul>
+              <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:28px">
+                <a href="{{ r.href }}" style="padding:14px 22px;border:1px solid #3A8455;border-radius:4px;font-size:13px;font-weight:700" style-hover="background:#E4F2E7">View Details</a>
+                <a href="{{ r.bookHref }}" style="padding:14px 22px;background:#3A8455;color:#fff;border-radius:4px;font-size:13px;font-weight:700" style-hover="background:#2A6642;color:#fff">Book This Room</a>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+      <p style="margin:56px 0 0;font-size:13px;color:#4a524c">Room details are compiled from published listings. Rates are provided on request through the booking inquiry.</p>
+    </div>
+  </section>
+</sc-if>
+
+<!-- ROOM DETAIL -->
+<sc-if value="{{ is.room }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Room Detail" style="padding:clamp(120px,13vw,150px) 0 clamp(72px,10vw,120px)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <nav aria-label="Breadcrumb"><ol style="list-style:none;margin:0 0 28px;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:13px;color:#4a524c">
+        <li><a href="#/" style="color:#4a524c">Home</a> /</li><li><a href="#/rooms" style="color:#4a524c">Rooms</a> /</li><li aria-current="page" style="color:#252B27;font-weight:600">{{ room.name }}</li>
+      </ol></nav>
+      <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(140px,18vw,240px);gap:12px">
+        <div style="grid-column:span {{ gal.main }};grid-row:span 2"><image-slot id="{{ room.img1 }}" src="{{ room.img1Src }}" shape="rounded" radius="6" placeholder="{{ room.name }} — main photo"></image-slot></div>
+        <div style="grid-column:span {{ gal.side }}"><image-slot id="{{ room.img2 }}" src="{{ room.img2Src }}" shape="rounded" radius="6" placeholder="Mural detail"></image-slot></div>
+        <div style="grid-column:span {{ gal.side }}"><image-slot id="{{ room.img3 }}" src="{{ room.img3Src }}" shape="rounded" radius="6" placeholder="Bathroom"></image-slot></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(40px,6vw,80px);margin-top:clamp(40px,5vw,64px);align-items:start">
+        <div style="grid-column:span {{ gal.bodySpan }}">
+          <h1 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(40px,5.5vw,68px);line-height:1.05">{{ room.name }}</h1>
+          <p style="margin:22px 0 0;font-size:18px;line-height:1.75;color:#4a524c;max-width:640px">{{ room.desc }}</p>
+          <dl style="margin:36px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));border-top:2px solid #3A8455">
+            <div style="padding:18px 16px 18px 0"><dt style="font-size:12px;color:#4a524c">Size</dt><dd style="margin:6px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:24px">{{ room.size }}</dd></div>
+            <div style="padding:18px 16px 18px 0"><dt style="font-size:12px;color:#4a524c">Bed</dt><dd style="margin:6px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:24px">{{ room.bedShort }}</dd></div>
+            <div style="padding:18px 16px 18px 0"><dt style="font-size:12px;color:#4a524c">Occupancy</dt><dd style="margin:6px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:24px">{{ room.occShort }}</dd></div>
+            <div style="padding:18px 16px 18px 0"><dt style="font-size:12px;color:#4a524c">View</dt><dd style="margin:6px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:24px">{{ room.view }}</dd></div>
+          </dl>
+          <h2 style="margin:48px 0 18px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3A8455">Room facilities</h2>
+          <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));column-gap:24px">
+            <sc-for list="{{ room.amenities }}" as="a" hint-placeholder-count="8">
+              <li style="padding:12px 0;border-bottom:1px solid #E6EAE6;font-size:15px">{{ a }}</li>
+            </sc-for>
+          </ul>
+          <h2 style="margin:40px 0 18px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3A8455">Available services</h2>
+          <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));column-gap:24px">
+            <sc-for list="{{ roomServices }}" as="a" hint-placeholder-count="6">
+              <li style="padding:12px 0;border-bottom:1px solid #E6EAE6;font-size:15px">{{ a }}</li>
+            </sc-for>
+          </ul>
+        </div>
+        <aside aria-label="Book this room" style="position:sticky;top:100px;background:#F7F9F7;border:1px solid #E6EAE6;border-radius:6px;padding:32px">
+          <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3A8455">Reserve</p>
+          <p style="margin:12px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:28px;line-height:1.2">Request the {{ room.name }}</p>
+          <p style="margin:12px 0 0;font-size:14px;line-height:1.65;color:#4a524c">Send an inquiry with your dates. Our reception team confirms availability and rates directly.</p>
+          <a href="{{ room.bookHref }}" style="display:block;margin-top:24px;padding:16px 20px;background:#3A8455;color:#fff;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#2A6642;color:#fff">Book This Room →</a>
+          <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:block;margin-top:10px;padding:15px 20px;border:1px solid #3A8455;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#E4F2E7">Ask on WhatsApp</a>
+          <p style="margin:20px 0 0;font-size:13px;color:#4a524c">Or call <a href="tel:+623707506999">+62 370 7506999</a></p>
+        </aside>
+      </div>
+      <div style="margin-top:clamp(64px,8vw,104px);padding-top:40px;border-top:2px solid #3A8455">
+        <h2 style="margin:0 0 32px;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(28px,3vw,40px)">Other rooms</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px">
+          <sc-for list="{{ related }}" as="r" hint-placeholder-count="2">
+            <a href="{{ r.href }}" style="display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:center;color:#252B27;padding:12px;border:1px solid #E6EAE6;border-radius:6px;transition:border-color .2s" style-hover="border-color:#3A8455;color:#252B27">
+              <div style="aspect-ratio:4/3;pointer-events:none"><image-slot id="{{ r.img1 }}" src="{{ r.img1Src }}" shape="rounded" radius="4" placeholder="{{ r.name }}"></image-slot></div>
+              <div><p style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:24px">{{ r.name }}</p><p style="margin:6px 0 0;font-size:13px;color:#4a524c">{{ r.size }} · {{ r.occ }}</p></div>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- FACILITIES -->
+<sc-if value="{{ is.facilities }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Facilities" style="padding:clamp(48px,6vw,72px) 0 clamp(72px,10vw,120px)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(24px,3vw,40px)">
+        <sc-for list="{{ facilities }}" as="fc" hint-placeholder-count="6">
+          <article>
+            <div style="aspect-ratio:4/3"><image-slot id="{{ fc.img }}" src="{{ fc.imgSrc }}" shape="rounded" radius="6" placeholder="{{ fc.name }}"></image-slot></div>
+            <h2 style="margin:22px 0 0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:28px">{{ fc.name }}</h2>
+            <p style="margin:10px 0 0;font-size:16px;line-height:1.7;color:#4a524c">{{ fc.desc }}</p>
+          </article>
+        </sc-for>
+      </div>
+      <div style="margin-top:clamp(64px,8vw,104px);padding-top:36px;border-top:2px solid #3A8455;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:32px">
+        <h2 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(28px,3vw,40px)">More services</h2>
+        <ul style="list-style:none;margin:0;padding:0;grid-column:span {{ span.more }};display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));column-gap:24px">
+          <sc-for list="{{ moreServices }}" as="m" hint-placeholder-count="6">
+            <li style="padding:14px 0;border-bottom:1px solid #E6EAE6;font-size:15px">{{ m }}</li>
+          </sc-for>
+        </ul>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- RESTAURANT -->
+<sc-if value="{{ is.restaurant }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Restaurant" style="padding:clamp(72px,10vw,120px) 0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,96px);align-items:center">
+      <div>
+        <h2 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.15">Dining atmosphere</h2>
+        <p style="margin:22px 0 0;font-size:17px;line-height:1.75;color:#4a524c">A relaxed, light-filled room for breakfast, a working lunch or an evening meal after a day in the city. Guests can dine in, take food to go, or order to their room.</p>
+        <p style="margin:16px 0 0;font-size:13px;color:#4a524c">[Restaurant name and concept — editable]</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="aspect-ratio:3/4"><image-slot id="rest-1" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/23/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Dining room"></image-slot></div>
+        <div style="aspect-ratio:3/4;margin-top:48px"><image-slot id="rest-2" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/1c/d6/71/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Breakfast spread"></image-slot></div>
+      </div>
+    </div>
+  </section>
+  <section style="padding:clamp(72px,10vw,120px) 0;background:#F7F9F7">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,96px)">
+      <div>
+        <h2 style="margin:0 0 28px;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,46px)">Menu highlights</h2>
+        <ul style="list-style:none;margin:0;padding:0;border-top:2px solid #3A8455">
+          <sc-for list="{{ menu }}" as="m" hint-placeholder-count="4">
+            <li style="padding:20px 0;border-bottom:1px solid #E6EAE6">
+              <p style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:22px">{{ m.n }}</p>
+              <p style="margin:6px 0 0;font-size:15px;line-height:1.6;color:#4a524c">{{ m.d }}</p>
+            </li>
+          </sc-for>
+        </ul>
+      </div>
+      <div>
+        <h2 style="margin:0 0 28px;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,46px)">Opening hours</h2>
+        <table style="width:100%;border-collapse:collapse;border-top:2px solid #3A8455;font-size:16px">
+          <tbody>
+            <sc-for list="{{ hours }}" as="h" hint-placeholder-count="3">
+              <tr><th scope="row" style="text-align:left;font-weight:600;padding:18px 0;border-bottom:1px solid #E6EAE6">{{ h.k }}</th><td style="text-align:right;padding:18px 0;border-bottom:1px solid #E6EAE6;color:#4a524c">{{ h.v }}</td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+        <p style="margin:14px 0 0;font-size:13px;color:#4a524c">Hours are editable placeholders; confirm with the hotel.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:32px">
+          <a href="{{ waRestaurant }}" target="_blank" rel="noopener" style="padding:15px 26px;background:#3A8455;color:#fff;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#2A6642;color:#fff">Reserve a Table</a>
+          <a href="tel:+623707506999" style="padding:14px 25px;border:1px solid #3A8455;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#E4F2E7">Call +62 370 7506999</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section style="padding:clamp(48px,6vw,72px) 0">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px">
+      <div style="aspect-ratio:1/1"><image-slot id="rest-3" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/56/06/be/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Signature dish"></image-slot></div>
+      <div style="aspect-ratio:1/1"><image-slot id="rest-4" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/b4/54/7b/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Beverages"></image-slot></div>
+      <div style="aspect-ratio:1/1"><image-slot id="rest-5" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/20/fizz-hotel-lombok.jpg?w=1400&amp;h=-1&amp;s=1" shape="rounded" radius="6" placeholder="Table setting"></image-slot></div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- GALLERY -->
+<sc-if value="{{ is.gallery }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Gallery" style="padding:clamp(48px,6vw,72px) 0 clamp(72px,10vw,120px)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <div role="group" aria-label="Gallery categories" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px">
+        <sc-for list="{{ galCats }}" as="gc" hint-placeholder-count="7">
+          <button onClick="{{ gc.onClick }}" aria-pressed="{{ gc.active }}" style="padding:11px 18px;border-radius:4px;border:1px solid {{ gc.border }};background:{{ gc.bg }};color:{{ gc.fg }};font:inherit;font-size:13px;font-weight:700;cursor:pointer">{{ gc.label }}</button>
+        </sc-for>
+      </div>
+      <div style="columns:3 280px;column-gap:16px">
+        <sc-for list="{{ galItems }}" as="g" hint-placeholder-count="9">
+          <figure style="margin:0 0 16px;break-inside:avoid;position:relative">
+            <div style="aspect-ratio:{{ g.ratio }}"><image-slot id="{{ g.id }}" src="{{ g.idSrc }}" shape="rounded" radius="6" placeholder="{{ g.label }}"></image-slot></div>
+            <figcaption style="display:flex;justify-content:space-between;align-items:center;padding:10px 2px 0;font-size:12px;color:#4a524c">
+              <span>{{ g.label }}</span>
+              <button onClick="{{ g.open }}" aria-label="Open in lightbox" style="border:0;background:transparent;color:#3A8455;font:inherit;font-size:12px;font-weight:700;cursor:pointer;padding:4px 0">Expand ↗</button>
+            </figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- LOCATION -->
+<sc-if value="{{ is.location }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Location" style="padding:clamp(48px,6vw,72px) 0 clamp(72px,10vw,120px)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+      <div style="height:clamp(360px,50vw,520px);border-radius:6px;overflow:hidden;border:1px solid #E6EAE6"><iframe title="Map: Fizz Hotel Lombok" src="{{ mapSrc }}" loading="lazy" style="border:0;width:100%;height:100%;display:block"></iframe></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(32px,4vw,56px);margin-top:clamp(48px,6vw,72px)">
+        <div>
+          <h2 style="margin:0 0 18px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3A8455">Address</h2>
+          <address style="font-style:normal;font-family:'Playfair Display',Georgia,serif;font-size:24px;line-height:1.4">Jl. Majapahit No. 31,<br>Kekalik Jaya, Sekarbela,<br>Mataram, Lombok</address>
+          <a href="{{ directionsUrl }}" target="_blank" rel="noopener" style="display:inline-block;margin-top:24px;padding:15px 24px;background:#3A8455;color:#fff;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#2A6642;color:#fff">Get directions</a>
+          <p style="margin:24px 0 0;font-size:15px;line-height:1.8"><a href="tel:+623707506999">+62 370 7506999</a><br><a href="mailto:fizzhotellombok@gmail.com">fizzhotellombok@gmail.com</a></p>
+        </div>
+        <div>
+          <h2 style="margin:0 0 18px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3A8455">Nearby</h2>
+          <ul style="list-style:none;margin:0;padding:0;border-top:1px solid #E6EAE6">
+            <sc-for list="{{ nearby }}" as="p" hint-placeholder-count="5">
+              <li style="padding:14px 0;border-bottom:1px solid #E6EAE6;font-size:15px;display:flex;justify-content:space-between;gap:16px"><span>{{ p.name }}</span><span style="color:#4a524c;text-align:right">{{ p.dist }}</span></li>
+            </sc-for>
+          </ul>
+        </div>
+        <div>
+          <h2 style="margin:0 0 18px;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3A8455">Getting here</h2>
+          <sc-for list="{{ transport }}" as="t" hint-placeholder-count="3">
+            <div style="padding:14px 0;border-bottom:1px solid #E6EAE6">
+              <p style="margin:0;font-weight:700;font-size:15px">{{ t.t }}</p>
+              <p style="margin:6px 0 0;font-size:15px;line-height:1.6;color:#4a524c">{{ t.d }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- CONTACT -->
+<sc-if value="{{ is.contact }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Contact" style="padding:clamp(48px,6vw,72px) 0 clamp(72px,10vw,120px)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(40px,6vw,96px);align-items:start">
+      <div>
+        <dl style="margin:0;border-top:2px solid #3A8455">
+          <div style="padding:20px 0;border-bottom:1px solid #E6EAE6"><dt style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3A8455">Address</dt><dd style="margin:8px 0 0;font-size:17px;line-height:1.6">Jl. Majapahit No. 31, Kekalik Jaya, Sekarbela, Mataram, Lombok</dd></div>
+          <div style="padding:20px 0;border-bottom:1px solid #E6EAE6"><dt style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3A8455">Telephone</dt><dd style="margin:8px 0 0;font-size:17px"><a href="tel:+623707506999">+62 370 7506999</a></dd></div>
+          <div style="padding:20px 0;border-bottom:1px solid #E6EAE6"><dt style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3A8455">Email</dt><dd style="margin:8px 0 0;font-size:17px"><a href="mailto:fizzhotellombok@gmail.com">fizzhotellombok@gmail.com</a></dd></div>
+          <div style="padding:20px 0;border-bottom:1px solid #E6EAE6"><dt style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3A8455">Social</dt><dd style="margin:8px 0 0;display:flex;flex-wrap:wrap;gap:20px;font-size:15px"><sc-for list="{{ socials }}" as="so" hint-placeholder-count="3"><a href="{{ so.href }}" target="_blank" rel="noopener">{{ so.label }}</a></sc-for></dd></div>
+        </dl>
+        <a href="{{ waGeneral }}" target="_blank" rel="noopener" style="display:inline-block;margin-top:28px;padding:15px 24px;background:#3A8455;color:#fff;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#2A6642;color:#fff">Chat on WhatsApp</a>
+        <div style="margin-top:36px;height:300px;border-radius:6px;overflow:hidden;border:1px solid #E6EAE6"><iframe title="Map: Fizz Hotel Lombok" src="{{ mapSrc }}" loading="lazy" style="border:0;width:100%;height:100%;display:block"></iframe></div>
+      </div>
+      <div style="background:#F7F9F7;border:1px solid #E6EAE6;border-radius:6px;padding:clamp(24px,4vw,44px)">
+        <sc-if value="{{ contactSent }}" hint-placeholder-val="{{ false }}">
+          <div role="status">
+            <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3A8455">Message received</p>
+            <p style="margin:14px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:30px;line-height:1.25">Thank you, {{ f.cName }}.</p>
+            <p style="margin:14px 0 0;font-size:16px;line-height:1.7;color:#4a524c">Our team will reply to {{ f.cEmail }} as soon as possible. For anything urgent, please call reception.</p>
+            <button onClick="{{ resetContact }}" style="margin-top:24px;padding:13px 20px;border:1px solid #3A8455;background:transparent;border-radius:4px;color:#3A8455;font:inherit;font-size:13px;font-weight:700;cursor:pointer">Send another message</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ contactForm }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submitContact }}" novalidate="" style="display:grid;gap:18px">
+            <h2 style="margin:0 0 6px;font-family:'Playfair Display',Georgia,serif;font-weight:500;font-size:32px">Send a message</h2>
+            <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Full name</span><input value="{{ f.cName }}" onChange="{{ on.cName }}" autocomplete="name" style="padding:13px 14px;border:1px solid {{ eb.cName }};border-radius:4px;font:inherit;font-size:15px;background:#fff"><span style="font-size:13px;color:#a8321e">{{ err.cName }}</span></label>
+            <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Email</span><input type="email" value="{{ f.cEmail }}" onChange="{{ on.cEmail }}" autocomplete="email" style="padding:13px 14px;border:1px solid {{ eb.cEmail }};border-radius:4px;font:inherit;font-size:15px;background:#fff"><span style="font-size:13px;color:#a8321e">{{ err.cEmail }}</span></label>
+            <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Subject</span><input value="{{ f.cSubject }}" onChange="{{ on.cSubject }}" style="padding:13px 14px;border:1px solid #E6EAE6;border-radius:4px;font:inherit;font-size:15px;background:#fff"></label>
+            <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Message</span><textarea rows="5" value="{{ f.cMsg }}" onChange="{{ on.cMsg }}" style="padding:13px 14px;border:1px solid {{ eb.cMsg }};border-radius:4px;font:inherit;font-size:15px;background:#fff;resize:vertical"></textarea><span style="font-size:13px;color:#a8321e">{{ err.cMsg }}</span></label>
+            <button type="submit" disabled="{{ loading }}" style="padding:16px 22px;border:0;background:#3A8455;color:#fff;border-radius:4px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;text-align:left" style-hover="background:#2A6642">{{ contactBtn }}</button>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+</sc-if>
+
+<!-- BOOKING -->
+<sc-if value="{{ is.booking }}" hint-placeholder-val="{{ false }}">
+  <section data-screen-label="Booking" style="padding:clamp(48px,6vw,72px) 0 clamp(72px,10vw,120px)">
+    <div style="max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(32px,5vw,64px);align-items:start">
+      <div style="grid-column:span {{ span.form }}">
+        <sc-if value="{{ bookingSent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="background:#E4F2E7;border-radius:6px;padding:clamp(28px,4vw,48px)">
+            <p style="margin:0;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#2A6642">Inquiry received</p>
+            <p style="margin:14px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3vw,38px);line-height:1.2;color:#2A6642">Thank you, {{ f.name }}. Your request is with our reservations team.</p>
+            <p style="margin:16px 0 0;font-size:16px;line-height:1.7;color:#2A6642">This is an inquiry, not a confirmed reservation. We'll contact you at {{ f.email }} or {{ f.phone }} to confirm availability and rates for {{ stayLabel }}.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px">
+              <a href="{{ waBooking }}" target="_blank" rel="noopener" style="padding:15px 24px;background:#3A8455;color:#fff;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#2A6642;color:#fff">Send via WhatsApp for a faster reply</a>
+              <button onClick="{{ resetBooking }}" style="padding:14px 22px;border:1px solid #3A8455;background:transparent;border-radius:4px;color:#3A8455;font:inherit;font-size:14px;font-weight:700;cursor:pointer">New inquiry</button>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ bookingForm }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submitBooking }}" novalidate="" style="display:grid;gap:32px">
+            <fieldset style="border:0;margin:0;padding:0;display:grid;gap:18px">
+              <legend style="padding:0 0 16px;font-family:'Playfair Display',Georgia,serif;font-size:28px">Your stay</legend>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px">
+                <label style="display:grid;gap:8px;align-content:start"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Check-in</span><input type="date" value="{{ f.ci }}" onChange="{{ on.ci }}" style="padding:13px 14px;border:1px solid {{ eb.ci }};border-radius:4px;font:inherit;font-size:15px;background:#fff"><span style="font-size:13px;color:#a8321e">{{ err.ci }}</span></label>
+                <label style="display:grid;gap:8px;align-content:start"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Check-out</span><input type="date" value="{{ f.co }}" onChange="{{ on.co }}" style="padding:13px 14px;border:1px solid {{ eb.co }};border-radius:4px;font:inherit;font-size:15px;background:#fff"><span style="font-size:13px;color:#a8321e">{{ err.co }}</span></label>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr));gap:16px">
+                <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Adults</span><select value="{{ f.adults }}" onChange="{{ on.adults }}" style="padding:13px 14px;border:1px solid #E6EAE6;border-radius:4px;font:inherit;font-size:15px;background:#fff"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+                <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Children</span><select value="{{ f.children }}" onChange="{{ on.children }}" style="padding:13px 14px;border:1px solid #E6EAE6;border-radius:4px;font:inherit;font-size:15px;background:#fff"><option>0</option><option>1</option><option>2</option><option>3</option></select></label>
+                <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Rooms</span><select value="{{ f.rooms }}" onChange="{{ on.rooms }}" style="padding:13px 14px;border:1px solid #E6EAE6;border-radius:4px;font:inherit;font-size:15px;background:#fff"><option>1</option><option>2</option><option>3</option><option>4</option></select></label>
+              </div>
+              <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Preferred room</span><select value="{{ f.cat }}" onChange="{{ on.cat }}" style="padding:13px 14px;border:1px solid #E6EAE6;border-radius:4px;font:inherit;font-size:15px;background:#fff"><option value="">No preference</option><option>Junior Room</option><option>Senior Room</option><option>Super Senior Room</option></select></label>
+            </fieldset>
+            <fieldset style="border:0;margin:0;padding:24px 0 0;border-top:1px solid #E6EAE6;display:grid;gap:18px">
+              <legend style="padding:0 0 16px;font-family:'Playfair Display',Georgia,serif;font-size:28px">Guest details</legend>
+              <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Full name</span><input value="{{ f.name }}" onChange="{{ on.name }}" autocomplete="name" style="padding:13px 14px;border:1px solid {{ eb.name }};border-radius:4px;font:inherit;font-size:15px;background:#fff"><span style="font-size:13px;color:#a8321e">{{ err.name }}</span></label>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px">
+                <label style="display:grid;gap:8px;align-content:start"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Email</span><input type="email" value="{{ f.email }}" onChange="{{ on.email }}" autocomplete="email" style="padding:13px 14px;border:1px solid {{ eb.email }};border-radius:4px;font:inherit;font-size:15px;background:#fff"><span style="font-size:13px;color:#a8321e">{{ err.email }}</span></label>
+                <label style="display:grid;gap:8px;align-content:start"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Phone / WhatsApp</span><input type="tel" value="{{ f.phone }}" onChange="{{ on.phone }}" autocomplete="tel" style="padding:13px 14px;border:1px solid {{ eb.phone }};border-radius:4px;font:inherit;font-size:15px;background:#fff"><span style="font-size:13px;color:#a8321e">{{ err.phone }}</span></label>
+              </div>
+              <label style="display:grid;gap:8px"><span style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Special requests</span><textarea rows="4" value="{{ f.req }}" onChange="{{ on.req }}" placeholder="Arrival time, airport transfer, accessibility needs…" style="padding:13px 14px;border:1px solid #E6EAE6;border-radius:4px;font:inherit;font-size:15px;background:#fff;resize:vertical"></textarea></label>
+            </fieldset>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+              <button type="submit" disabled="{{ loading }}" style="padding:17px 26px;border:0;background:#3A8455;color:#fff;border-radius:4px;font:inherit;font-size:14px;font-weight:700;cursor:pointer" style-hover="background:#2A6642">{{ bookingBtn }}</button>
+              <a href="{{ waBooking }}" target="_blank" rel="noopener" style="padding:16px 24px;border:1px solid #3A8455;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#E4F2E7">Send via WhatsApp</a>
+            </div>
+          </form>
+        </sc-if>
+      </div>
+      <aside style="position:sticky;top:100px;border-top:2px solid #3A8455;padding-top:24px">
+        <h2 style="margin:0;font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3A8455">Your request</h2>
+        <dl style="margin:16px 0 0">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid #E6EAE6;font-size:15px"><dt style="color:#4a524c">Dates</dt><dd style="margin:0;font-weight:600;text-align:right">{{ stayLabel }}</dd></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid #E6EAE6;font-size:15px"><dt style="color:#4a524c">Guests</dt><dd style="margin:0;font-weight:600;text-align:right">{{ guestLabel }}</dd></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid #E6EAE6;font-size:15px"><dt style="color:#4a524c">Room</dt><dd style="margin:0;font-weight:600;text-align:right">{{ catLabel }}</dd></div>
+        </dl>
+        <p style="margin:20px 0 0;font-size:14px;line-height:1.65;color:#4a524c">Availability is confirmed by our reception team. No payment is taken on this page.</p>
+        <sc-if value="{{ hasEngine }}" hint-placeholder-val="{{ false }}">
+          <a href="{{ engineUrl }}" target="_blank" rel="noopener" style="display:block;margin-top:20px;padding:15px 20px;background:#2A6642;color:#fff;border-radius:4px;font-size:14px;font-weight:700">Book instantly online →</a>
+        </sc-if>
+        <p style="margin:20px 0 0;font-size:14px">Prefer to talk? <a href="tel:+623707506999">+62 370 7506999</a></p>
+      </aside>
+    </div>
+  </section>
+</sc-if>
+
+</main>
+
+<footer style="background:#2A6642;color:#fff">
+  <div style="max-width:1280px;margin:0 auto;padding:clamp(56px,8vw,96px) clamp(20px,4vw,48px) 32px">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.2)">
+      <p style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(28px,3.4vw,44px);line-height:1.15;max-width:18ch">Your comfort, our priority, in the heart of Mataram.</p>
+      <a href="#/booking" style="padding:16px 28px;background:#fff;color:#2A6642;border-radius:4px;font-size:14px;font-weight:700" style-hover="background:#E4F2E7;color:#2A6642">Book Your Stay</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:36px;padding:44px 0">
+      <div>
+        <img src="assets/logo-fizz-white.png" alt="Fizz Hotel Lombok" width="218" height="56" style="display:block;height:56px;width:auto">
+        <p style="margin:16px 0 0;font-size:14px;line-height:1.7;color:#E4F2E7">A modern city hotel with 43 rooms, a restaurant and meeting facilities on Jl. Majapahit, Mataram.</p>
+      </div>
+      <nav aria-label="Footer">
+        <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#E4F2E7">Explore</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;font-size:14px">
+          <sc-for list="{{ nav }}" as="n" hint-placeholder-count="8"><li><a href="{{ n.href }}" style="color:#fff" style-hover="color:#E4F2E7">{{ n.label }}</a></li></sc-for>
+        </ul>
+      </nav>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#E4F2E7">Contact</p>
+        <address style="font-style:normal;font-size:14px;line-height:1.8">Jl. Majapahit No. 31, Kekalik Jaya,<br>Sekarbela, Mataram, Lombok<br><a href="tel:+623707506999" style="color:#fff">+62 370 7506999</a><br><a href="mailto:fizzhotellombok@gmail.com" style="color:#fff">fizzhotellombok@gmail.com</a></address>
+        <a href="{{ directionsUrl }}" target="_blank" rel="noopener" style="display:inline-block;margin-top:12px;font-size:14px;font-weight:700;color:#fff;border-bottom:1px solid #fff;padding-bottom:3px">Google Maps directions →</a>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#E4F2E7">Follow</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14px">
+          <sc-for list="{{ socials }}" as="so" hint-placeholder-count="3"><li><a href="{{ so.href }}" target="_blank" rel="noopener" style="color:#fff">{{ so.label }}</a></li></sc-for>
+          <li><a href="{{ waGeneral }}" target="_blank" rel="noopener" style="color:#fff">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;border-top:1px solid rgba(255,255,255,.2);font-size:12px;color:#E4F2E7">
+      <span>© {{ year }} Fizz Hotel Lombok. All rights reserved.</span>
+      <span>Mataram · Lombok · Indonesia</span>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-label="Image viewer" style="position:fixed;inset:0;z-index:100;background:rgba(42,102,66,.94);display:flex;flex-direction:column;padding:20px clamp(16px,4vw,48px)">
+    <div style="display:flex;justify-content:space-between;align-items:center;color:#fff;font-size:14px;padding-bottom:16px">
+      <span>{{ lb.label }} · {{ lb.pos }}</span>
+      <button onClick="{{ closeLb }}" aria-label="Close" style="width:44px;height:44px;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:4px;font-size:18px;cursor:pointer">✕</button>
+    </div>
+    <div style="flex:1;display:flex;align-items:center;gap:16px;min-height:0">
+      <button onClick="{{ lbPrev }}" aria-label="Previous image" style="width:48px;height:48px;flex:none;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:4px;font-size:18px;cursor:pointer">←</button>
+      <div style="flex:1;height:100%;max-height:80vh"><image-slot id="{{ lb.id }}" src="{{ lb.idSrc }}" shape="rounded" radius="6" fit="contain" placeholder="{{ lb.label }}"></image-slot></div>
+      <button onClick="{{ lbNext }}" aria-label="Next image" style="width:48px;height:48px;flex:none;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:4px;font-size:18px;cursor:pointer">→</button>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;62XXXXXXXXXX&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Integrations&quot;},&quot;bookingEngineUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Integrations&quot;},&quot;showHeroWidget&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;}}">
+const SITE = 'https://www.fizzhotellombok.com';
+const COMMON = ['Air conditioning','Flat-screen TV with cable channels','Work desk and chair','Private bathroom with shower','Free toiletries','Complimentary bottled water','In-room safe','Wi-Fi','Soundproofing','Daily housekeeping','Unique in-room mural'];
+const ROOMS = [
+  { slug:'junior-room', name:'Junior Room', size:'14 m²', bed:'Double or twin beds', bedShort:'Double / Twin', occ:'Up to 3 guests', occShort:'3 guests', view:'Window', beds:['double','twin'],
+    short:'A compact, well-planned room for solo travellers and short city stays.',
+    desc:'Our most compact category, the Junior Room is laid out for short stays and busy schedules. Choose a double or twin configuration; every room is finished with its own mural.', extra:[] },
+  { slug:'senior-room', name:'Senior Room', size:'21 m²', bed:'1 double bed', bedShort:'Double', occ:'Up to 3 guests', occShort:'3 guests', view:'City view', beds:['double'],
+    short:'More room to unwind, with a city outlook and a proper work area.',
+    desc:'The Senior Room adds space for longer stays and working trips, with a city view, blackout drapes for good sleep and an iron and ironing board for early meetings.', extra:['Blackout drapes','Iron and ironing board'] },
+  { slug:'super-senior-room', name:'Super Senior Room', size:'29 m²', bed:'1 double bed', bedShort:'Double', occ:'Up to 3 guests', occShort:'3 guests', view:'City view', beds:['double'],
+    short:'Our most spacious room, with generous floor space and city views.',
+    desc:'At 29 m², the Super Senior is the largest room at Fizz. It suits couples, small families and guests who want extra space to spread out after a day in Lombok.', extra:[] },
+];
+const SERVICES = [
+  ['Restaurant','Daily local breakfast, dine-in and takeaway.'],['Meeting Room','Meeting and reception spaces for business events.'],
+  ['Free Wi-Fi','Stay connected throughout the hotel.'],['Free Parking','Complimentary on-site self parking.'],
+  ['24-Hour Reception','Front desk and security around the clock.'],['Room Service','Meals delivered to your room.'],
+  ['Housekeeping','Daily housekeeping in every room.'],['Bicycle Rental','Explore the city at your own pace.']
+];
+const NEARBY = [
+  { name:'Lombok Epicentrum Mall', dist:'approx. 1.6 km' },
+  { name:'Museum Negeri NTB', dist:'approx. 5 min drive' },
+  { name:'Mataram city centre', dist:'Business district' },
+  { name:'Islamic Center NTB', dist:'[distance — verify]' },
+  { name:'Lombok International Airport', dist:'approx. 45 min drive' },
+];
+const REVIEWS = [
+  { quote:'Add a verified guest review here — for example, imported from Google Reviews.', name:'[Guest name]', source:'Google Reviews' },
+  { quote:'Second verified review. Keep the guest’s original wording and attribute the source.', name:'[Guest name]', source:'[Source]' },
+  { quote:'Third verified review. Reviews can be managed from the CMS once connected.', name:'[Guest name]', source:'[Source]' },
+];
+const GAL_CATS = ['Exterior','Lobby','Rooms','Restaurant','Facilities','Hotel Atmosphere'];
+const RATIOS = ['4/5','4/3','1/1','3/4'];
+const GALLERY = GAL_CATS.flatMap((c, ci) => [0,1,2,3].map(i => ({ id:`gal-${ci}-${i}`, idSrc:null, cat:c, label:`${c} ${i+1}`, ratio: RATIOS[(ci + i) % 4] })));
+const PAGES = {
+  home:{ t:'Fizz Hotel Lombok – Modern City Hotel in Mataram, Lombok', d:'Fizz Hotel Lombok is a modern city hotel on Jl. Majapahit, Mataram. Comfortable rooms, restaurant, meeting room, free Wi-Fi and parking.' },
+  about:{ t:'About Us – Fizz Hotel Lombok', d:'The story, philosophy and character of Fizz Hotel Lombok, a contemporary city hotel in Mataram.', eyebrow:'About Us', title:'A modern city hotel in Mataram, made for comfort.', lead:'Fizz Hotel Lombok brings together practical accommodation, warm service and an artistic interior in the centre of Mataram.' },
+  rooms:{ t:'Rooms & Accommodation – Fizz Hotel Lombok, Mataram', d:'Junior, Senior and Super Senior rooms at Fizz Hotel Lombok. Sizes, beds, occupancy and amenities.', eyebrow:'Rooms & Accommodation', title:'Rooms for every kind of city stay.', lead:'Three room categories, all air-conditioned and soundproofed, each with its own mural.' },
+  facilities:{ t:'Facilities – Fizz Hotel Lombok', d:'Restaurant, meeting room, free Wi-Fi, free parking, 24-hour reception and guest services at Fizz Hotel Lombok.', eyebrow:'Facilities', title:'The essentials, done well.', lead:'From the restaurant to the meeting room, everything you need for business or leisure is under one roof.' },
+  restaurant:{ t:'Restaurant – Fizz Hotel Lombok, Mataram', d:'Daily local breakfast, dine-in, takeaway and room service at the Fizz Hotel Lombok restaurant.', eyebrow:'Restaurant', title:'Good food, from breakfast onward.', lead:'Start with a complimentary local breakfast and return for relaxed meals through the day.' },
+  gallery:{ t:'Gallery – Fizz Hotel Lombok', d:'Photos of Fizz Hotel Lombok: exterior, lobby, rooms, restaurant, facilities and atmosphere.', eyebrow:'Gallery', title:'Inside Fizz Hotel Lombok.', lead:'Browse the hotel by space, from the street front to the murals in our rooms.' },
+  location:{ t:'Location – Hotel on Jl. Majapahit, Mataram | Fizz Hotel Lombok', d:'Find Fizz Hotel Lombok at Jl. Majapahit No. 31, Mataram. Directions, nearby attractions and transport.', eyebrow:'Location', title:'Jl. Majapahit No. 31, Mataram.', lead:'Central, easy to reach and close to the city’s shopping, museums and offices.' },
+  contact:{ t:'Contact – Fizz Hotel Lombok', d:'Contact Fizz Hotel Lombok by phone, email or WhatsApp. Jl. Majapahit No. 31, Mataram, Lombok.', eyebrow:'Contact', title:'We’re here to help.', lead:'Questions about your stay, events or dining? Reach our reception team any time.' },
+  booking:{ t:'Book Your Stay – Fizz Hotel Lombok', d:'Send a booking inquiry to Fizz Hotel Lombok. Our team confirms availability and rates directly.', eyebrow:'Booking Inquiry', title:'Book your stay.', lead:'Tell us your dates and preferences. Our reservations team will confirm availability by email, phone or WhatsApp.' },
+};
+const NAV = [['home','Home','#/'],['about','About Us','#/about'],['rooms','Rooms','#/rooms'],['facilities','Facilities','#/facilities'],['restaurant','Restaurant','#/restaurant'],['gallery','Gallery','#/gallery'],['location','Location','#/location'],['contact','Contact','#/contact']];
+const FIELDS = ['ci','co','adults','children','rooms','cat','name','email','phone','req','cName','cEmail','cSubject','cMsg'];
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHOTOS = ["https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/20/fizz-hotel-lombok.jpg?w=1400&h=-1&s=1","https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/1f/fizz-hotel-lombok.jpg?w=1400&h=-1&s=1","https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/21/fizz-hotel-lombok.jpg?w=1400&h=-1&s=1","https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/1e/fizz-hotel-lombok.jpg?w=1400&h=-1&s=1","https://dynamic-media-cdn.tripadvisor.com/media/photo-o/28/74/ff/23/fizz-hotel-lombok.jpg?w=1400&h=-1&s=1","https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/1c/d6/71/fizz-hotel-lombok.jpg?w=1400&h=-1&s=1","https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/56/06/be/fizz-hotel-lombok.jpg?w=1400&h=-1&s=1","https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0c/b4/54/7b/fizz-hotel-lombok.jpg?w=1400&h=-1&s=1"];
+const ph = n => PHOTOS[Math.abs(n) % PHOTOS.length];
+const fmt = d => d ? new Date(d + 'T00:00').toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : '';
+
+class Component extends DCLogic {
+  state = { route: this.parse(), scrolled:false, w: window.innerWidth, menu:false, slide:0, filter:'all', galCat:'All', lb:null, err:{}, loading:false, bookingSent:false, contactSent:false,
+    f:{ ci:'', co:'', adults:'2', children:'0', rooms:'1', cat:'', name:'', email:'', phone:'', req:'', cName:'', cEmail:'', cSubject:'', cMsg:'' } };
+
+  parse() {
+    const parts = (location.hash || '').replace(/^#\/?/, '').split('?')[0].split('/').filter(Boolean);
+    let page = parts[0] || 'home';
+    if (page === 'rooms' && parts[1]) return { page:'room', slug:parts[1] };
+    if (!PAGES[page]) page = 'home';
+    return { page };
+  }
+  componentDidMount() {
+    this._hash = () => { const q = new URLSearchParams((location.hash.split('?')[1]) || ''); this.setState(s => ({ route:this.parse(), menu:false, lb:null, f: q.get('room') ? { ...s.f, cat:q.get('room') } : s.f }), () => this.meta()); window.scrollTo(0, 0); setTimeout(() => this.meta(), 0); };
+    this._scroll = () => { const sc = window.scrollY > 40; if (sc !== this.state.scrolled) this.setState({ scrolled:sc }); };
+    this._resize = () => this.setState({ w: window.innerWidth });
+    this._key = e => { if (e.key === 'Escape') this.setState({ lb:null, menu:false }); };
+    window.addEventListener('hashchange', this._hash); window.addEventListener('scroll', this._scroll, { passive:true });
+    window.addEventListener('resize', this._resize); window.addEventListener('keydown', this._key);
+    this.meta();
+  }
+  componentWillUnmount() { ['hashchange','scroll','resize','keydown'].forEach((ev, i) => window.removeEventListener(ev, [this._hash,this._scroll,this._resize,this._key][i])); }
+  componentDidUpdate(_, ps) { if (ps.route !== this.state.route) this.meta(); }
+  meta() {
+    const { page, slug } = this.parse();
+    const room = ROOMS.find(r => r.slug === slug);
+    const m = page === 'room' ? { t:`${room ? room.name : 'Room'} – Fizz Hotel Lombok`, d: room ? room.short : '' } : PAGES[page];
+    document.title = m.t;
+    const set = (sel, attr, key, val) => { let el = document.head.querySelector(sel); if (!el) { el = document.createElement(sel.startsWith('link') ? 'link' : 'meta'); el.setAttribute(attr, key); document.head.appendChild(el); } el.setAttribute(sel.startsWith('link') ? 'href' : 'content', val); };
+    const path = page === 'home' ? '/' : page === 'room' ? `/rooms/${slug}` : `/${page}`;
+    set('meta[name="description"]', 'name', 'description', m.d);
+    set('meta[property="og:title"]', 'property', 'og:title', m.t);
+    set('meta[property="og:description"]', 'property', 'og:description', m.d);
+    set('meta[name="twitter:title"]', 'name', 'twitter:title', m.t);
+    set('link[rel="canonical"]', 'rel', 'canonical', SITE + path);
+  }
+  wa(text) { const n = (this.props.whatsappNumber || '62XXXXXXXXXX').replace(/\D/g, '') || '62XXXXXXXXXX'; return `https://wa.me/${n}?text=${encodeURIComponent(text)}`; }
+  validateBooking(f) {
+    const e = {};
+    if (!f.ci) e.ci = 'Please choose a check-in date.';
+    if (!f.co) e.co = 'Please choose a check-out date.';
+    else if (f.ci && f.co <= f.ci) e.co = 'Check-out must be after check-in.';
+    if (!f.name.trim()) e.name = 'Please tell us your name.';
+    if (!EMAIL_RE.test(f.email)) e.email = 'Please enter a valid email address.';
+    if (f.phone.replace(/\D/g, '').length < 8) e.phone = 'Please enter a phone number we can reach.';
+    return e;
+  }
+  pill(active) { return { bg: active ? '#3A8455' : '#fff', fg: active ? '#fff' : '#252B27', border: active ? '#3A8455' : '#E6EAE6', active: String(active) }; }
+
+  renderVals() {
+    const { route, scrolled, w, menu, f, err, slide, filter, galCat, lb, loading } = this.state;
+    const page = route.page, mobile = w < 1080, home = page === 'home';
+    const overHero = home && !scrolled && !menu;
+    const on = {}; FIELDS.forEach(k => on[k] = e => { const v = e.target.value; this.setState(s => ({ f:{ ...s.f, [k]:v }, err:{ ...s.err, [k]:undefined } })); });
+    const eb = {}; FIELDS.forEach(k => eb[k] = err[k] ? '#a8321e' : '#E6EAE6');
+    const decorate = r => ({ ...r, href:`#/rooms/${r.slug}`, bookHref:`#/booking?room=${encodeURIComponent(r.name)}`, img1:`room-${r.slug}-1`, img2:`room-${r.slug}-2`, img3:`room-${r.slug}-3`, img1Src:ph(ROOMS.indexOf(r)*3), img2Src:ph(ROOMS.indexOf(r)*3+1), img3Src:ph(ROOMS.indexOf(r)*3+2),
+      amenities:[...COMMON, ...r.extra], amenitiesShort:['Air conditioning','Flat-screen TV','Work desk','Soundproofing', ...r.extra.slice(0,1)] });
+    const rooms = ROOMS.map(decorate);
+    const room = rooms.find(r => r.slug === route.slug) || rooms[0];
+    const pm = PAGES[page] || {};
+    const navActive = page === 'room' ? 'rooms' : page;
+    const nights = f.ci && f.co && f.co > f.ci ? Math.round((new Date(f.co) - new Date(f.ci)) / 864e5) : 0;
+    const stayLabel = f.ci && f.co ? `${fmt(f.ci)} – ${fmt(f.co)}${nights ? ` (${nights} night${nights > 1 ? 's' : ''})` : ''}` : 'Dates not selected';
+    const guestLabel = `${f.adults} adult${f.adults === '1' ? '' : 's'}${f.children !== '0' ? `, ${f.children} child${f.children === '1' ? '' : 'ren'}` : ''} · ${f.rooms} room${f.rooms === '1' ? '' : 's'}`;
+    const waBookingText = `Hello Fizz Hotel Lombok, I'd like to inquire about a stay.\nDates: ${stayLabel}\nGuests: ${guestLabel}\nRoom: ${f.cat || 'No preference'}\nName: ${f.name}\nEmail: ${f.email}\nPhone: ${f.phone}${f.req ? `\nRequests: ${f.req}` : ''}`;
+    const galItems = GALLERY.filter(g => galCat === 'All' || g.cat === galCat);
+    const engine = (this.props.bookingEngineUrl || '').trim();
+
+    return {
+      desktop: !mobile, mobile, menuOpen: mobile && menu, year: new Date().getFullYear(),
+      toggleMenu: () => this.setState(s => ({ menu: !s.menu })), closeMenu: () => this.setState({ menu:false }),
+      hdr: overHero ? { bg:'transparent', fg:'#fff', border:'transparent', border2:'rgba(255,255,255,.6)', logo:'assets/logo-fizz-white.png' } : { bg:'#fff', fg:'#252B27', border:'#E6EAE6', border2:'#E6EAE6', logo:'assets/logo-fizz.png' },
+      nav: NAV.map(([k, label, href]) => ({ label, href, opacity: k === navActive ? 1 : .78, line: k === navActive ? 'currentColor' : 'transparent' })),
+      is: { home, about:page==='about', rooms:page==='rooms', room:page==='room', facilities:page==='facilities', restaurant:page==='restaurant', gallery:page==='gallery', location:page==='location', contact:page==='contact', booking:page==='booking' },
+      inner: !home && page !== 'room',
+      ph: { eyebrow:pm.eyebrow, title:pm.title, lead:pm.lead, crumb:pm.eyebrow },
+      crumbs: [{ label:'Home', href:'#/' }],
+      showWidget: this.props.showHeroWidget ?? true,
+      f, on, eb, err, loading,
+      span: { a: mobile ? 12 : 5, b: mobile ? 12 : 4, c: mobile ? 12 : 3, more: w < 760 ? 1 : 2, form: w < 900 ? 1 : 2 },
+      gal: { main: w < 700 ? 4 : 3, side: w < 700 ? 2 : 1, bodySpan: w < 900 ? 1 : 2 },
+      rooms, room, related: rooms.filter(r => r.slug !== room.slug),
+      roomsFiltered: rooms.filter(r => filter === 'all' || r.beds.includes(filter)),
+      filters: [['all','All rooms'],['double','Double bed'],['twin','Twin beds']].map(([k, label]) => ({ label, ...this.pill(filter === k), onClick: () => this.setState({ filter:k }) })),
+      roomServices: ['24-hour reception','Room service','Daily housekeeping','Complimentary local breakfast','Free parking','Airport shuttle (surcharge)'],
+      services: SERVICES.map(([name, desc], i) => ({ no: String(i + 1).padStart(2, '0'), name, desc })),
+      why: [
+        { t:'Strategic city location', d:'On Jl. Majapahit in Mataram’s business district, close to shopping and offices.' },
+        { t:'Comfortable accommodation', d:'Air-conditioned, soundproofed rooms with work desks and daily housekeeping.' },
+        { t:'Friendly hospitality', d:'A 24-hour reception team ready to help with transport, dining and plans.' },
+        { t:'Convenient facilities', d:'Restaurant, meeting room, free Wi-Fi and free parking on site.' },
+        { t:'Business and leisure', d:'A practical base for working trips and for exploring the rest of Lombok.' },
+      ],
+      values: [
+        { k:'Philosophy', t:'Comfort comes first.', d:'Every decision, from soundproofing to daily housekeeping, is made so guests can rest well and get on with their day.' },
+        { k:'Vision', t:'Mataram’s modern city hotel.', d:'To be the first choice for travellers who want a central, contemporary and dependable stay in Lombok’s capital.' },
+        { k:'Commitment', t:'Warm, attentive service.', d:'Our reception team is available around the clock, and we treat every request with care, however small.' },
+      ],
+      facilities: [
+        { img:'fac-restaurant', imgSrc:ph(0+2), name:'Restaurant', desc:'Complimentary local breakfast daily, plus dine-in and takeaway meals.' },
+        { img:'fac-meeting', imgSrc:ph(1+2), name:'Meeting & Events', desc:'Meeting rooms and a reception hall for business meetings and small events. Capacity on request.' },
+        { img:'fac-lobby', imgSrc:ph(2+2), name:'Lobby & Reception', desc:'A 24-hour front desk with concierge services, luggage storage and 24-hour security.' },
+        { img:'fac-parking', imgSrc:ph(3+2), name:'Free Parking', desc:'Complimentary on-site self parking for guests.' },
+        { img:'fac-wifi', imgSrc:ph(4+2), name:'Free Wi-Fi', desc:'Internet access for guests across the hotel.' },
+        { img:'fac-services', imgSrc:ph(5+2), name:'Guest Services', desc:'Room service, daily housekeeping, bicycle rental and an airport shuttle on request.' },
+      ],
+      moreServices: ['Complimentary local breakfast','Room service','Daily housekeeping','Concierge','Luggage storage','24-hour security','Bicycle rental','Airport shuttle (surcharge)','Taxi service'],
+      menu: [
+        { n:'Local breakfast', d:'A complimentary daily breakfast of local cuisine for in-house guests.' },
+        { n:'[Signature dish]', d:'[Short description — editable]' },
+        { n:'[Lunch or dinner favourite]', d:'[Short description — editable]' },
+        { n:'[Beverage highlight]', d:'[Short description — editable]' },
+      ],
+      hours: [{ k:'Breakfast', v:'[06:00 – 10:00]' }, { k:'Lunch', v:'[11:00 – 15:00]' }, { k:'Dinner', v:'[18:00 – 22:00]' }, { k:'Room service', v:'[Hours — editable]' }],
+      nearby: NEARBY, nearbyShort: NEARBY.slice(0, 3),
+      transport: [
+        { t:'From Lombok International Airport', d:'Approximately 45 minutes by car. An airport shuttle can be arranged for a surcharge.' },
+        { t:'Around the city', d:'Taxi service via reception, or rent a bicycle from the hotel.' },
+        { t:'By car', d:'Free on-site parking for guests.' },
+      ],
+      mapSrc: 'https://www.google.com/maps?q=Fizz+Hotel+Lombok,+Jl.+Majapahit+No.+31,+Mataram&output=embed',
+      directionsUrl: 'https://www.google.com/maps/dir/?api=1&destination=Fizz+Hotel+Lombok,+Jl.+Majapahit+No.+31,+Mataram',
+      socials: [{ label:'Instagram', href:'https://instagram.com/' }, { label:'Facebook', href:'https://facebook.com/' }, { label:'TripAdvisor', href:'https://www.tripadvisor.com/' }],
+      review: REVIEWS[slide], reviewPos: `${String(slide + 1).padStart(2, '0')} / ${String(REVIEWS.length).padStart(2, '0')}`,
+      prevReview: () => this.setState(s => ({ slide: (s.slide + REVIEWS.length - 1) % REVIEWS.length })),
+      nextReview: () => this.setState(s => ({ slide: (s.slide + 1) % REVIEWS.length })),
+      widgetSubmit: e => { e.preventDefault(); location.hash = '#/booking'; },
+      galCats: ['All', ...GAL_CATS].map(c => ({ label:c, ...this.pill(galCat === c), onClick: () => this.setState({ galCat:c }) })),
+      galItems: galItems.map((g, i) => ({ ...g, idSrc: ph(GALLERY.indexOf(g)), open: () => this.setState({ lb: i }) })),
+      lightboxOpen: lb !== null && page === 'gallery',
+      lb: lb !== null && galItems[lb] ? { ...galItems[lb], idSrc: ph(GALLERY.indexOf(galItems[lb])), pos:`${lb + 1} / ${galItems.length}` } : { id:'none', idSrc:'', label:'', pos:'' },
+      closeLb: () => this.setState({ lb:null }),
+      lbPrev: () => this.setState(s => ({ lb: (s.lb + galItems.length - 1) % galItems.length })),
+      lbNext: () => this.setState(s => ({ lb: (s.lb + 1) % galItems.length })),
+      waGeneral: this.wa('Hello Fizz Hotel Lombok, I have a question.'),
+      waRestaurant: this.wa('Hello Fizz Hotel Lombok, I would like to reserve a table at the restaurant.'),
+      waBooking: this.wa(waBookingText),
+      stayLabel, guestLabel, catLabel: f.cat || 'No preference',
+      hasEngine: !!engine, engineUrl: engine,
+      bookingSent: this.state.bookingSent, bookingForm: !this.state.bookingSent,
+      bookingBtn: loading ? 'Sending inquiry…' : 'Send Booking Inquiry',
+      submitBooking: e => {
+        e.preventDefault();
+        const er = this.validateBooking(f);
+        if (Object.keys(er).length) return this.setState({ err:er });
+        this.setState({ loading:true });
+        setTimeout(() => { this.setState({ loading:false, bookingSent:true }); window.scrollTo(0, 0); }, 800);
+      },
+      resetBooking: () => this.setState(s => ({ bookingSent:false, f:{ ...s.f, name:'', email:'', phone:'', req:'' } })),
+      contactSent: this.state.contactSent, contactForm: !this.state.contactSent,
+      contactBtn: loading ? 'Sending…' : 'Send Message',
+      submitContact: e => {
+        e.preventDefault();
+        const er = {};
+        if (!f.cName.trim()) er.cName = 'Please tell us your name.';
+        if (!EMAIL_RE.test(f.cEmail)) er.cEmail = 'Please enter a valid email address.';
+        if (f.cMsg.trim().length < 10) er.cMsg = 'Please write a short message (10+ characters).';
+        if (Object.keys(er).length) return this.setState({ err:er });
+        this.setState({ loading:true });
+        setTimeout(() => this.setState({ loading:false, contactSent:true }), 800);
+      },
+      resetContact: () => this.setState(s => ({ contactSent:false, f:{ ...s.f, cSubject:'', cMsg:'' } })),
+    };
+  }
+}
+</script>
+</body>
+</html>
